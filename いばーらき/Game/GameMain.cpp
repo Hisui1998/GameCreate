@@ -1,5 +1,5 @@
 #include "GameMain.h"
-
+#include "Player.h"
 
 
 GameMain::GameMain()
@@ -15,12 +15,14 @@ GameMain::~GameMain()
 
 bool GameMain::init()
 {
-	idx = 0;
+	_player = std::make_unique<Player>();
 	return true;
 }
 
 void GameMain::UpDate()
 {
-	DrawCircle();
-	idx++;
+	char key[256];
+	GetHitKeyStateAll(key);
+	_player->UpDate(key);
+	_player->Draw();
 }
