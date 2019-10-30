@@ -12,6 +12,7 @@ private:
 public:
 	GameMain();
 	~GameMain();
-	void UpDate();
+	virtual SCENE UpDate(SCENE &_this);
+	virtual void Draw();
 };
 

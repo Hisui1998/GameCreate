@@ -3,13 +3,16 @@
 #include <memory>
 #include <DxLib.h>
 
+class Scene;
+using SCENE = std::unique_ptr<Scene>;
+
 class Scene
 {
 protected:
 	virtual bool init() = 0;
-
 public:
 	virtual ~Scene() {};
 
-	virtual void UpDate() = 0;
+	virtual SCENE UpDate(SCENE &_this) = 0;
+	virtual void Draw() = 0;
 };

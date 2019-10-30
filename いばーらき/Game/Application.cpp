@@ -1,5 +1,5 @@
 #include "Application.h"
-#include "GameMain.h"
+#include "GameTitle.h"
 
 std::shared_ptr<Application> Application::_appptr(new Application());
 
@@ -26,7 +26,7 @@ bool Application::Init()
 	}
 	else std::cout << "DxLib‰Šú‰»Š®—¹" << std::endl;
 
-	NowScene = std::make_unique<GameMain>();
+	NowScene = std::make_unique<GameTitle>();
 
 	return true;
 }
@@ -37,7 +37,8 @@ int Application::Main()
 	{
 		ClearDrawScreen();
 
-		NowScene->UpDate();
+		NowScene = std::move(NowScene->UpDate(NowScene));
+		NowScene->Draw();
 
 		ScreenFlip();
 	}
@@ -49,3 +50,4 @@ bool Application::End()
 	DxLib_End();
 	return true;
 }
+

@@ -1,6 +1,10 @@
 #include "GameMain.h"
+#include "GameTitle.h"
 #include "Player.h"
-
+/*
+//•ÏXE’Ç‰Á“_
+:GameMain.h/cpp  :GameTitle.h/cpp :Application.h/cpp
+*/
 
 GameMain::GameMain()
 {
@@ -19,10 +23,17 @@ bool GameMain::init()
 	return true;
 }
 
-void GameMain::UpDate()
+SCENE GameMain::UpDate(SCENE &_this)
 {
 	char key[256];
 	GetHitKeyStateAll(key);
 	_player->UpDate(key);
 	_player->Draw();
+
+	return std::move(_this);
+}
+
+void GameMain::Draw()
+{
+	DrawString(0, 0, "GameMain", 0xffffff);
 }

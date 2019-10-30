@@ -19,18 +19,12 @@
     <Filter Include="ソース ファイル\Scene">
       <UniqueIdentifier>{53bcdb0a-7fdb-49bf-a437-3b0fa89cd307}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Actor">
-      <UniqueIdentifier>{06f0f315-21eb-414d-8086-b2ab25599272}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\Actor">
-      <UniqueIdentifier>{65e68523-484b-48be-b0d2-07e568e8b051}</UniqueIdentifier>
+      <UniqueIdentifier>{d23acd00-7aca-48cd-8afc-d934d79d3467}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Application.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameMain.cpp">
@@ -38,6 +32,12 @@
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Application.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="GameTitle.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -50,11 +50,14 @@
     <ClInclude Include="GameMain.h">
       <Filter>ヘッダー ファイル\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Actor.h">
-      <Filter>ヘッダー ファイル\Actor</Filter>
-    </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\1701304\Desktop\ゲーム\GameCreate\いばーらき\Game\Actor.h">
+      <Filter>ヘッダー ファイル\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="GameTitle.h">
+      <Filter>ヘッダー ファイル\Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
