@@ -1,9 +1,7 @@
 #pragma once
 #include <memory>
 
-//追加部分
 class Scene;
-using SCENE = std::unique_ptr<Scene>;
 
 // サイズ用構造体
 struct Size
@@ -21,8 +19,8 @@ private:
 	int idx = 0;
 	const Size wSize;
 
-	//
-	SCENE NowScene;
+	// 現在のシーンのポインタ
+	std::unique_ptr<Scene> _nowScene;
 public:
 	~Application();
 
@@ -31,6 +29,6 @@ public:
 	};
 
 	bool Init();
-	int Main();
+	int Run();
 	bool End();
 };

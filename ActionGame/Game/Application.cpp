@@ -3,7 +3,11 @@
 
 std::shared_ptr<Application> Application::_appptr(new Application());
 
-Application::Application():wSize()
+// 各種定数
+constexpr int WINDOW_WIDTH = 800;
+constexpr int WINDOW_HEIGHT = 600;
+
+Application::Application():wSize(WINDOW_WIDTH, WINDOW_HEIGHT)
 {
 	std::cout << "アプリケーションを開始します" << std::endl;
 }
@@ -15,8 +19,9 @@ Application::~Application()
 
 bool Application::Init()
 {
-	SetWindowTextA("Game");
-	SetGraphMode(800,600,32);
+	std::cout << "各種初期化を開始します" << std::endl;
+	SetWindowTextA("ActionGame");
+	SetGraphMode(wSize.width, wSize.height,32);
 	SetDrawScreen(DX_SCREEN_BACK);
 	ChangeWindowMode(true);
 	if (DxLib_Init())
@@ -26,19 +31,25 @@ bool Application::Init()
 	}
 	else std::cout << "DxLib初期化完了" << std::endl;
 
-	NowScene = std::make_unique<GameTitle>();
+	_nowScene = std::make_unique<GameTitle>();
 
 	return true;
 }
 
-int Application::Main()
+int Application::Run()
 {
 	while (!ProcessMessage())
 	{
+		char key[256] = {};
+		GetHitKeyStateAll(key);
+
 		ClearDrawScreen();
 
-		NowScene = std::move(NowScene->UpDate(NowScene));
-		NowScene->Draw();
+		if ((_nowScene = std::move(_nowScene->UpDate(_nowScene, key))) == nullptr){
+			return 1;
+		}
+
+		_nowScene->Draw();
 
 		ScreenFlip();
 	}

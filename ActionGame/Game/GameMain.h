@@ -12,7 +12,7 @@ private:
 public:
 	GameMain();
 	~GameMain();
-	virtual SCENE UpDate(SCENE &_this);
-	virtual void Draw();
+	std::unique_ptr<Scene> UpDate(std::unique_ptr<Scene> &_this, char key[256]);
+	void Draw();
 };
 

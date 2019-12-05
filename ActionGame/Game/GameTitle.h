@@ -1,16 +1,6 @@
 #pragma once
 #include "Scene.h"
-#include "GameMain.h"
-#include <memory>
-#include <array>
-/////////////////////////////////使い捨て
-enum STATE
-{
-	ST_NOW,
-	ST_OLD,
-	ST_MAX
-};
-using MOUSE_INT = std::array<int, ST_MAX>;
+#include <map>
 
 class Actor;
 
@@ -19,16 +9,24 @@ class GameTitle:
 {
 private:
 	bool init();
-	//std::unique_ptr<Scene> NowScene;
+
+	// 次に移行するシーン
+	enum class NextScene
+	{
+		Main,// メイン
+		Config,// コンフィグ(オプション)
+		End,// ゲーム終了
+		Max// 最大数
+	};
+
+	int _nowSelect;// 選択中
+
 	std::unique_ptr<Actor> _player;
-	///////////////
-	MOUSE_INT mouseBtn;
-	////////////////
 public:
 	GameTitle();
 	~GameTitle();
 
-	virtual SCENE UpDate(SCENE &_this);
+	virtual std::unique_ptr<Scene> UpDate(std::unique_ptr<Scene> &_this, char key[256]);
 	virtual void Draw();
 };
 
