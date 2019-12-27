@@ -4,11 +4,12 @@
 
 class Actor;
 
+// タイトルシーンクラス
 class GameTitle:
 	public Scene
 {
 private:
-	bool init();
+	bool Init()override final;
 
 	// 次に移行するシーン
 	enum class NextScene
@@ -26,7 +27,7 @@ public:
 	GameTitle();
 	~GameTitle();
 
-	virtual std::unique_ptr<Scene> UpDate(std::unique_ptr<Scene> &_this, char key[256]);
-	virtual void Draw();
+	std::unique_ptr<Scene> Update(std::unique_ptr<Scene> &_this, char key[256])override final;
+	void Draw()override final;
 };
 

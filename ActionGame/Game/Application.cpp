@@ -31,7 +31,8 @@ bool Application::Init()
 	}
 	else std::cout << "DxLib初期化完了" << std::endl;
 
-	_nowScene = std::make_unique<GameTitle>();
+	_nowScenes.emplace_back(std::make_unique<GameTitle>());
+	_nowScenes.back()->PreAllInit();
 
 	return true;
 }
@@ -45,11 +46,19 @@ int Application::Run()
 
 		ClearDrawScreen();
 
-		if ((_nowScene = std::move(_nowScene->UpDate(_nowScene, key))) == nullptr){
-			return 1;
-		}
+		// 最新のシーンのデータのみ更新
+		auto& nuwScene = _nowScenes.back();
+		nuwScene = std::move(nuwScene->Update(nuwScene, key));
 
-		_nowScene->Draw();
+		// すべてのシーンの描画
+		for (auto& scene:_nowScenes){
+			if (scene == nullptr)
+			{
+				_nowScenes.pop_back();
+				continue;
+			}
+			scene->Draw();
+		}
 
 		ScreenFlip();
 	}
@@ -60,5 +69,10 @@ bool Application::End()
 {
 	DxLib_End();
 	return true;
+}
+
+void Application::AddScene(std::unique_ptr<Scene> inPtr)
+{
+	_nowScenes.emplace_back(std::move(inPtr));
 }
 

@@ -1,5 +1,6 @@
 #pragma once
 #include <memory>
+#include <vector>
 
 class Scene;
 
@@ -20,7 +21,7 @@ private:
 	const Size wSize;
 
 	// 現在のシーンのポインタ
-	std::unique_ptr<Scene> _nowScene;
+	std::vector<std::unique_ptr<Scene>> _nowScenes;
 public:
 	~Application();
 
@@ -31,4 +32,5 @@ public:
 	bool Init();
 	int Run();
 	bool End();
+	void AddScene(std::unique_ptr<Scene> inPtr);
 };

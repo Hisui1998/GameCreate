@@ -4,7 +4,7 @@
 
 GameMain::GameMain()
 {
-	if (init()) std::cout << "ゲームシーン初期化完了" << std::endl;
+	if (Init()) std::cout << "ゲームシーン初期化完了" << std::endl;
 	else std::cout << "ゲームシーン初期化失敗" << std::endl;
 }
 
@@ -13,15 +13,14 @@ GameMain::~GameMain()
 {
 }
 
-bool GameMain::init()
+bool GameMain::Init()
 {
 	_player = std::make_unique<Player>();
 	return true;
 }
 
-std::unique_ptr<Scene> GameMain::UpDate(std::unique_ptr<Scene> &_this, char key[256])
+std::unique_ptr<Scene> GameMain::Update(std::unique_ptr<Scene> &_this, char key[256])
 {
-	_flame++;
 	_player->UpDate(key);
 	_player->Draw();
 
@@ -30,5 +29,6 @@ std::unique_ptr<Scene> GameMain::UpDate(std::unique_ptr<Scene> &_this, char key[
 
 void GameMain::Draw()
 {
+	_drawFlame++;
 	DrawString(0, 0, "MainScene", 0xffffff);
 }

@@ -3,16 +3,17 @@
 
 class Actor;
 
+// ゲームのメインシーンクラス
 class GameMain :
 	public Scene
 {
 private:
-	bool init();
+	bool Init()override final;
 	std::unique_ptr<Actor> _player;
 public:
 	GameMain();
 	~GameMain();
-	std::unique_ptr<Scene> UpDate(std::unique_ptr<Scene> &_this, char key[256]);
-	void Draw();
+	std::unique_ptr<Scene> Update(std::unique_ptr<Scene> &_this, char key[256])override final;
+	void Draw()override final;
 };
 
