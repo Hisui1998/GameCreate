@@ -12,10 +12,10 @@ Application::Application():wSize(WINDOW_WIDTH, WINDOW_HEIGHT)
 	std::cout << "アプリケーションを開始します" << std::endl;
 }
 
-
 Application::~Application()
 {
 }
+
 
 bool Application::Init()
 {
@@ -71,8 +71,17 @@ bool Application::End()
 	return true;
 }
 
+
+// シーンの追加関数
+// inPtr:追加するシーンのポインタ
 void Application::AddScene(std::unique_ptr<Scene> inPtr)
 {
 	_nowScenes.emplace_back(std::move(inPtr));
+}
+
+// ウィンドウサイズ取得関数
+Size Application::GetWindowSize()
+{
+	return wSize;
 }
 

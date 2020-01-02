@@ -21,8 +21,11 @@ protected:
 
 	// 描画用フレーム格納用
 	int _drawFlame;
+
 	// ボタン名からキー番号を取得する
 	static std::map<std::string, int> _keyState;
+
+	// ボタン名を入れてる
 	const std::vector<std::string> KeyName;
 public:
 	Scene();
@@ -30,8 +33,14 @@ public:
 
 	// 一回だけ呼ぶすべてに共通する初期化
 	void PreAllInit();
+
+	/// _this:現在のシーンのポインタ
+	/// key:キー入力情報
+	/// 変更がない場合は引数で受け取っている_thisを返す。
+	/// 変更がある場合は返り値に次のシーンとなるポインタを返す。
 	// 更新用
 	virtual std::unique_ptr<Scene> Update(std::unique_ptr<Scene> &_this, char key[256]) = 0;
+
 	// 描画用
 	virtual void Draw() = 0;
 };

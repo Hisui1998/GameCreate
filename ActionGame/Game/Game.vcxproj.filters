@@ -59,14 +59,19 @@
     <ClInclude Include="Player.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\1701304\Desktop\ゲーム\GameCreate\いばーらき\Game\Actor.h">
-      <Filter>ヘッダー ファイル\Actor</Filter>
-    </ClInclude>
     <ClInclude Include="GameTitle.h">
       <Filter>ヘッダー ファイル\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Config.h">
       <Filter>ヘッダー ファイル\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Actor.h">
+      <Filter>ヘッダー ファイル\Actor</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="test.hlsl">
+      <Filter>ヘッダー ファイル\Actor</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
