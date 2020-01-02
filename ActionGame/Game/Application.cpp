@@ -1,5 +1,5 @@
 #include "Application.h"
-#include "GameTitle.h"
+#include "TestField.h"
 
 std::shared_ptr<Application> Application::_appptr(new Application());
 
@@ -31,7 +31,7 @@ bool Application::Init()
 	}
 	else std::cout << "DxLib‰Šú‰»Š®—¹" << std::endl;
 
-	_nowScenes.emplace_back(std::make_unique<GameTitle>());
+	_nowScenes.emplace_back(std::make_unique<TestField>());
 	_nowScenes.back()->PreAllInit();
 
 	return true;
