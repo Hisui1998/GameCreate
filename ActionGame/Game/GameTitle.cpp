@@ -64,6 +64,10 @@ void GameTitle::Draw()
 	if (_drawFlame/20%2){
 		DrawString(0, 15 + abs(_nowSelect % (int)NextScene::Max) * 15, ">>", 0xffffff);
 	}
+	else
+	{
+		DrawString(0, 15 + abs(_nowSelect % (int)NextScene::Max) * 15, ">>", 0xaaaaaa);
+	}
 	DrawString(20, 15, "GameMain", 0xffffff);
 	DrawString(20, 30, "Config", 0xffffff);
 	DrawString(20, 45, "End", 0xffffff);
