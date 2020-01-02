@@ -22,13 +22,19 @@
     <Filter Include="ヘッダー ファイル\Actor">
       <UniqueIdentifier>{d23acd00-7aca-48cd-8afc-d934d79d3467}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Actor">
+      <UniqueIdentifier>{ed44e946-deef-4276-8dcd-8694f493844f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Attack">
+      <UniqueIdentifier>{c1259d0a-dcb9-4e0f-ac53-f855819e4219}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Attack">
+      <UniqueIdentifier>{8a192964-d656-460a-94cf-e357b3bf1f7f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameMain.cpp">
       <Filter>ソース ファイル\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Application.cpp">
       <Filter>ソース ファイル</Filter>
@@ -42,7 +48,28 @@
     <ClCompile Include="Main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>ソース ファイル\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="PrtEnemy.cpp">
+      <Filter>ソース ファイル\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>ソース ファイル\Actor</Filter>
+    </ClCompile>
     <ClCompile Include="Scene.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="TestField.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="PrtAttack.cpp">
+      <Filter>ソース ファイル\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="Proximity.cpp">
+      <Filter>ソース ファイル\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="Shot.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -56,9 +83,6 @@
     <ClInclude Include="GameMain.h">
       <Filter>ヘッダー ファイル\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="GameTitle.h">
       <Filter>ヘッダー ファイル\Scene</Filter>
     </ClInclude>
@@ -68,10 +92,26 @@
     <ClInclude Include="Actor.h">
       <Filter>ヘッダー ファイル\Actor</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="test.hlsl">
+    <ClInclude Include="Player.h">
       <Filter>ヘッダー ファイル\Actor</Filter>
-    </FxCompile>
+    </ClInclude>
+    <ClInclude Include="PrtEnemy.h">
+      <Filter>ヘッダー ファイル\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>ヘッダー ファイル\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="TestField.h">
+      <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="PrtAttack.h">
+      <Filter>ヘッダー ファイル\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="Proximity.h">
+      <Filter>ヘッダー ファイル\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="Shot.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
