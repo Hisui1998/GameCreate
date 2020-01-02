@@ -15,6 +15,9 @@ GameMain::~GameMain()
 
 bool GameMain::Init()
 {
+	_bgImage.emplace_back(LoadGraph("../Resource/BackGround/îwåiêØÇÃÇ›.png"));
+	_bgImage.emplace_back(LoadGraph("../Resource/BackGround/îwåiéRÇÃÇ›.png"));
+	_bgImage.emplace_back(LoadGraph("../Resource/BackGround/îwåiåéÇÃÇ›.png"));
 	_player = std::make_unique<Player>();
 	return true;
 }
@@ -30,5 +33,9 @@ std::unique_ptr<Scene> GameMain::Update(std::unique_ptr<Scene> &_this, char key[
 void GameMain::Draw()
 {
 	_drawFlame++;
+	for (auto& bg:_bgImage)
+	{
+		DrawExtendGraph(0, 0, 1440,600,bg,true);
+	}
 	DrawString(0, 0, "MainScene", 0xffffff);
 }
