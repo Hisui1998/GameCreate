@@ -6,6 +6,7 @@ class Proximity :
 	public PrtAttack
 {
 public:
+	//actor‚Ìpos,actor‚Ìsize,actor‚Ìdir,UŒ‚î•ñ‚Ìsize,UŒ‚ƒtƒŒ[ƒ€‚ÌÅ‘å”
 	Proximity(Vec2 pos, Vec2 size,Vec2 dir, Vec2 atkSize, int flameMax);
 	~Proximity();
 

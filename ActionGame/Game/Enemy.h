@@ -3,11 +3,11 @@
 
 enum class StateID
 {
-	IDLE,
-	MOVE,
-	FALL,
-	PROXATK,
-	SHOTATK,
+	IDLE,		//停止中
+	MOVE,		//移動
+	FALL,		//落下
+	PROXATK,	//近接攻撃
+	SHOTATK,	//遠距離攻撃
 	MAX
 };
 
@@ -30,6 +30,7 @@ private:
 
 public:
 	Enemy();
+	//位置情報、画像サイズ
 	Enemy(Vec2 pos, Vec2 size);
 	~Enemy();
 
@@ -37,7 +38,9 @@ public:
 	bool Init(void) override;
 	void UpDate(char* key) override;
 	void Draw(void)override;
-	void CheckBlock(bool,bool, const float&, const float&)override;
+
+	//地面との判定、壁との判定、変更情報x,y
+	void CheckBlock(bool isGround, bool isWall, const float& x, const float& y)override;
 
 	StateID state;
 };
