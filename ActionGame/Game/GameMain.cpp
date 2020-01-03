@@ -1,6 +1,7 @@
 #include "GameMain.h"
 #include "GameTitle.h"
 #include "Player.h"
+#include "Enemy.h"
 
 GameMain::GameMain()
 {
@@ -19,14 +20,14 @@ bool GameMain::Init()
 	_bgImage.emplace_back(LoadGraph("../Resource/BackGround/îwåiéRÇÃÇ›.png"));
 	_bgImage.emplace_back(LoadGraph("../Resource/BackGround/îwåiåéÇÃÇ›.png"));
 	_player = std::make_unique<Player>();
+	_enemy = std::make_unique<Enemy>(Vec2(0, 100), Vec2(30, 30));
 	return true;
 }
 
 std::unique_ptr<Scene> GameMain::Update(std::unique_ptr<Scene> &_this, char key[256])
 {
 	_player->UpDate(key);
-	_player->Draw();
-
+	_enemy->UpDate(key);
 	return std::move(_this);
 }
 
@@ -37,5 +38,7 @@ void GameMain::Draw()
 	{
 		DrawExtendGraph(0, 0, 1440,600,bg,true);
 	}
+	_player->Draw();
+	_enemy->Draw();
 	DrawString(0, 0, "MainScene", 0xffffff);
 }

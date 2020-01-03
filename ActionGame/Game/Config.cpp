@@ -21,24 +21,24 @@ Config::~Config()
 
 std::unique_ptr<Scene> Config::Update(std::unique_ptr<Scene>& _this, char key[256])
 {
-	// _isChangeフラグが立っていたらキー変更のアップデートへ移行
+	/// _isChangeフラグが立っていたらキー変更のアップデートへ移行
 	if (_isChange)
 	{
 		ChangeKeyUpdate(key);
 	}
-	// 攻撃キーが押された場合キー変更状態へ移行
+	/// 攻撃キーが押された場合キー変更状態へ移行
 	else if (CheckKeyTrigger(key,_keyState["Attack"]))
 	{
 		_isChange = true;
 		_changeKeyNum = 0;
 	}
-	// ESCキーが押された場合はNullPtrを返してポーズ画面を終了する
+	/// ESCキーが押された場合はNullPtrを返してポーズ画面を終了する
 	else if (CheckKeyTrigger(key,KEY_INPUT_ESCAPE))
 	{
 		return nullptr;
 	}
 	
-	// 前フレームのキー情報として格納
+	/// 前フレームのキー情報として格納
 	for (int i = 0; i < 256; ++i) {
 		_oldKey[i] = key[i];
 	}
