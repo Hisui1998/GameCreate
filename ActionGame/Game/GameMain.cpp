@@ -2,6 +2,7 @@
 #include "GameTitle.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "GraphicMng.h"
 
 GameMain::GameMain()
 {
@@ -16,9 +17,9 @@ GameMain::~GameMain()
 
 bool GameMain::Init()
 {
-	_bgImage.emplace_back(LoadGraph("../Resource/BackGround/îwåiêØÇÃÇ›.png"));
-	_bgImage.emplace_back(LoadGraph("../Resource/BackGround/îwåiéRÇÃÇ›.png"));
-	_bgImage.emplace_back(LoadGraph("../Resource/BackGround/îwåiåéÇÃÇ›.png"));
+	_bgImage.emplace_back(IMAGE_ID("../Resource/BackGround/îwåiêØÇÃÇ›.png"));
+	_bgImage.emplace_back(IMAGE_ID("../Resource/BackGround/îwåiéRÇÃÇ›.png"));
+	_bgImage.emplace_back(IMAGE_ID("../Resource/BackGround/îwåiåéÇÃÇ›.png"));
 	_player = std::make_unique<Player>();
 	_enemy = std::make_unique<Enemy>(Vec2(0, 100), Vec2(30, 30));
 	return true;
@@ -36,7 +37,10 @@ void GameMain::Draw()
 	_drawFlame++;
 	for (auto& bg:_bgImage)
 	{
-		DrawExtendGraph(0, 0, 1440,600,bg,true);
+		for (auto & image:bg)
+		{
+			DrawExtendGraph(0, 0, 1440, 600, image, true);
+		}
 	}
 	_player->Draw();
 	_enemy->Draw();

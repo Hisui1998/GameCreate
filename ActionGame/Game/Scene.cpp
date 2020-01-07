@@ -33,4 +33,12 @@ void Scene::PreAllInit()
 	_keyState["Attack"] = KEY_INPUT_SPACE;
 }
 
+int Scene::GetKey(std::string name)
+{
+	if (_keyState.find(name) != _keyState.end())
+	{
+		return _keyState[name];
+	}
+	return -1;
+}
 

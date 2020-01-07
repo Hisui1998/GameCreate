@@ -13,7 +13,7 @@ private:
 	std::unique_ptr<Actor> _enemy;
 
 	// テスト用
-	std::vector<int> _bgImage;
+	std::vector<std::vector<int>> _bgImage;
 public:
 	GameMain();
 	~GameMain();
