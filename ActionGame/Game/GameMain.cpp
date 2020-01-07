@@ -2,14 +2,13 @@
 #include "GameTitle.h"
 #include "Player.h"
 #include "Enemy.h"
-#include "GraphicMng.h"
+#include "ResourceMng.h"
 
 GameMain::GameMain()
 {
 	if (Init()) std::cout << "ƒQ[ƒ€ƒV[ƒ“‰Šú‰»Š®—¹" << std::endl;
 	else std::cout << "ƒQ[ƒ€ƒV[ƒ“‰Šú‰»Ž¸”s" << std::endl;
 }
-
 
 GameMain::~GameMain()
 {
@@ -25,7 +24,7 @@ bool GameMain::Init()
 	return true;
 }
 
-std::unique_ptr<Scene> GameMain::Update(std::unique_ptr<Scene> &_this, char key[256])
+std::unique_ptr<Scene> GameMain::Update(std::unique_ptr<Scene>& _this, char key[256])
 {
 	_player->UpDate(key);
 	_enemy->UpDate(key);
@@ -35,9 +34,9 @@ std::unique_ptr<Scene> GameMain::Update(std::unique_ptr<Scene> &_this, char key[
 void GameMain::Draw()
 {
 	_drawFlame++;
-	for (auto& bg:_bgImage)
+	for (auto& bg : _bgImage)
 	{
-		for (auto & image:bg)
+		for (auto& image : bg)
 		{
 			DrawExtendGraph(0, 0, 1440, 600, image, true);
 		}

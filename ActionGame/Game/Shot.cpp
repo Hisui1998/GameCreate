@@ -1,7 +1,5 @@
 #include "Shot.h"
 
-
-
 Shot::Shot(Vec2 pos, Vec2 size, Vec2 dir, Vec2 atkSize)
 {
 	this->size = atkSize;
@@ -18,7 +16,6 @@ Shot::Shot(Vec2 pos, Vec2 size, Vec2 dir, Vec2 atkSize)
 	alive = true;
 }
 
-
 Shot::~Shot()
 {
 }
@@ -28,7 +25,7 @@ bool Shot::Init(void)
 	return false;
 }
 
-void Shot::UpDate(char * key)
+void Shot::UpDate(char* key)
 {
 	pos.x += dir.x * speed;
 

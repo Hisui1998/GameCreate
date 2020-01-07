@@ -1,7 +1,5 @@
 #include "Config.h"
 
-
-
 bool Config::Init()
 {
 	_isChange = false;
@@ -13,7 +11,6 @@ Config::Config()
 {
 	Init();
 }
-
 
 Config::~Config()
 {
@@ -27,17 +24,17 @@ std::unique_ptr<Scene> Config::Update(std::unique_ptr<Scene>& _this, char key[25
 		ChangeKeyUpdate(key);
 	}
 	/// 攻撃キーが押された場合キー変更状態へ移行
-	else if (CheckKeyTrigger(key,_keyState["Attack"]))
+	else if (CheckKeyTrigger(key, _keyState["Attack"]))
 	{
 		_isChange = true;
 		_changeKeyNum = 0;
 	}
 	/// ESCキーが押された場合はNullPtrを返してポーズ画面を終了する
-	else if (CheckKeyTrigger(key,KEY_INPUT_ESCAPE))
+	else if (CheckKeyTrigger(key, KEY_INPUT_ESCAPE))
 	{
 		return nullptr;
 	}
-	
+
 	/// 前フレームのキー情報として格納
 	for (int i = 0; i < 256; ++i) {
 		_oldKey[i] = key[i];
@@ -51,7 +48,7 @@ void Config::ChangeKeyUpdate(const char key[256])
 	for (int i = 0; i < 256; ++i)
 	{
 		// ボタンが押された瞬間押されたキーに変更し、成功したなら_changeKeyNumを加算する
-		if ((CheckKeyTrigger(key,i)) && (ChangeKeyState(KeyName[_changeKeyNum], i)))
+		if ((CheckKeyTrigger(key, i)) && (ChangeKeyState(KeyName[_changeKeyNum], i)))
 		{
 			if (++_changeKeyNum >= KeyName.size())
 			{
@@ -66,14 +63,14 @@ void Config::ChangeKeyUpdate(const char key[256])
 // stateName::書き換えるキーの名前
 // keyValue::キー番号
 // 変更したらTrue、変更しなかったときはFalseを返す
-bool Config::ChangeKeyState(const std::string& stateName,const int& keyValue)
+bool Config::ChangeKeyState(const std::string& stateName, const int& keyValue)
 {
 	// 引数でもらってきた情報のチェック
 	if (_keyState.find(stateName) != _keyState.end())
 	{
 		for (auto& checkkey : _keyState)
 		{
-			if ((checkkey.second == keyValue)&&(_keyState[stateName] != keyValue))
+			if ((checkkey.second == keyValue) && (_keyState[stateName] != keyValue))
 			{
 				return false;
 			}
@@ -87,10 +84,10 @@ bool Config::ChangeKeyState(const std::string& stateName,const int& keyValue)
 void Config::Draw()
 {
 	_drawFlame++;
-	DrawString(150,0,"ConfigNow",0xffffff);
-	if ((_isChange)&&((_drawFlame/20)%2))
+	DrawString(150, 0, "ConfigNow", 0xffffff);
+	if ((_isChange) && ((_drawFlame / 20) % 2))
 	{
-		DrawFormatString(120, 40+20* _changeKeyNum, 0xffffff, "変更中");
+		DrawFormatString(120, 40 + 20 * _changeKeyNum, 0xffffff, "変更中");
 	}
 	if (_isChange)
 	{

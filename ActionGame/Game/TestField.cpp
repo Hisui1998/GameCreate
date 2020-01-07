@@ -2,7 +2,6 @@
 #include "Enemy.h"
 #include "Player.h"
 
-
 //マジックナンバー40はマップチップの大きさ
 
 TestField::TestField()
@@ -15,12 +14,11 @@ TestField::~TestField()
 {
 }
 
-
 bool TestField::CheckGround(std::weak_ptr<PrtEnemy> actPtr, float& y)
 {
 	//当たり判定をとっているか確認するための座標(足下の座標)
 	Vec2 checkPos = Vec2(actPtr.lock()->GetPos().x + actPtr.lock()->GetSize().x / 2,
-						 actPtr.lock()->GetPos().y + actPtr.lock()->GetSize().y);
+		actPtr.lock()->GetPos().y + actPtr.lock()->GetSize().y);
 
 	if (_mapData[(int)checkPos.y / 40][(int)checkPos.x / 40] == ChipType::GROUND)
 	{
@@ -30,11 +28,11 @@ bool TestField::CheckGround(std::weak_ptr<PrtEnemy> actPtr, float& y)
 	return false;
 }
 
-bool TestField::CheckWall(std::weak_ptr<PrtEnemy> actPtr, float & x)
+bool TestField::CheckWall(std::weak_ptr<PrtEnemy> actPtr, float& x)
 {
 	//当たり判定をとっているか確認するための座標(向いている方向の端)
 	Vec2 checkPos = Vec2(actPtr.lock()->GetPos().x + actPtr.lock()->GetSize().x / 2 + actPtr.lock()->GetDir().x * actPtr.lock()->GetSize().x / 2,
-						 actPtr.lock()->GetPos().y + actPtr.lock()->GetSize().y / 2);
+		actPtr.lock()->GetPos().y + actPtr.lock()->GetSize().y / 2);
 
 	if (_mapData[(int)checkPos.y / 40][(int)checkPos.x / 40] == ChipType::WALL)
 	{
@@ -47,7 +45,7 @@ bool TestField::CheckWall(std::weak_ptr<PrtEnemy> actPtr, float & x)
 bool TestField::Init()
 {
 	_player = std::make_unique<Player>();
-	_actors.emplace_back(std::make_shared<Enemy>(Vec2(200,100), Vec2(30, 30)));
+	_actors.emplace_back(std::make_shared<Enemy>(Vec2(200, 100), Vec2(30, 30)));
 
 	_mapData.resize(600 / 40);
 	for (int y = 0; y < 15; y++)
@@ -109,8 +107,6 @@ void TestField::Draw()
 			}
 		}
 	}
-
-	
 
 	DrawString(0, 0, "TestField", 0xffffff);
 }

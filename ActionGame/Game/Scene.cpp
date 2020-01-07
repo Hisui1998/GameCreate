@@ -2,7 +2,6 @@
 
 std::map<std::string, int> Scene::_keyState = {};
 
-
 /// key:判定を行うキー配列
 /// checkInputKey:判定を行うキー番号
 /// 押された瞬間のみTrueを返し、それ以外はFalseを返す
@@ -41,4 +40,3 @@ int Scene::GetKey(std::string name)
 	}
 	return -1;
 }
-
