@@ -19,6 +19,7 @@ bool GameMain::Init()
 	_bgImage.emplace_back(LoadGraph("../Resource/BackGround/”wŒiR‚Ì‚İ.png"));
 	_bgImage.emplace_back(LoadGraph("../Resource/BackGround/”wŒiŒ‚Ì‚İ.png"));
 	_player = std::make_unique<Player>();
+	lpMapCtl->RoadMap("mapdata-1");
 	return true;
 }
 
