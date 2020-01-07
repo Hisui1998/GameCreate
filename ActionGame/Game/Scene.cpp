@@ -2,7 +2,6 @@
 
 std::map<std::string, int> Scene::_keyState = {};
 
-
 /// key:判定を行うキー配列
 /// checkInputKey:判定を行うキー番号
 /// 押された瞬間のみTrueを返し、それ以外はFalseを返す
@@ -33,4 +32,11 @@ void Scene::PreAllInit()
 	_keyState["Attack"] = KEY_INPUT_SPACE;
 }
 
-
+int Scene::GetKey(std::string name)
+{
+	if (_keyState.find(name) != _keyState.end())
+	{
+		return _keyState[name];
+	}
+	return -1;
+}

@@ -5,7 +5,7 @@
 int main()
 #else
 #include <windows.h>
-int WINAPI WinMain(HINSTANCE,HINSTANCE,LPSTR,int)
+int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 #endif
 {
 	if (!Application::Instance()->Init())return -1;

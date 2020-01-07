@@ -1,11 +1,8 @@
 #include "PrtAttack.h"
 
-
-
 PrtAttack::PrtAttack()
 {
 }
-
 
 PrtAttack::~PrtAttack()
 {

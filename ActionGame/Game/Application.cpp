@@ -8,7 +8,7 @@ std::shared_ptr<Application> Application::_appptr(new Application());
 constexpr int WINDOW_WIDTH = 800;
 constexpr int WINDOW_HEIGHT = 600;
 
-Application::Application():wSize(WINDOW_WIDTH, WINDOW_HEIGHT)
+Application::Application() :wSize(WINDOW_WIDTH, WINDOW_HEIGHT)
 {
 	std::cout << "アプリケーションを開始します" << std::endl;
 }
@@ -17,16 +17,15 @@ Application::~Application()
 {
 }
 
-
 bool Application::Init()
 {
 	std::cout << "各種初期化を開始します" << std::endl;
 	SetWindowTextA("ActionGame");
-	SetGraphMode(wSize.width, wSize.height,32);
+	SetGraphMode(wSize.width, wSize.height, 32);
 	SetDrawScreen(DX_SCREEN_BACK);
 	ChangeWindowMode(true);
 	if (DxLib_Init())
-	{ 
+	{
 		std::cout << "DxLib初期化失敗" << std::endl;
 		return false;
 	}
@@ -52,7 +51,7 @@ int Application::Run()
 		nuwScene = std::move(nuwScene->Update(nuwScene, key));
 
 		// すべてのシーンの描画
-		for (auto& scene:_nowScenes){
+		for (auto& scene : _nowScenes) {
 			if (scene == nullptr)
 			{
 				_nowScenes.pop_back();
@@ -72,7 +71,6 @@ bool Application::End()
 	return true;
 }
 
-
 // シーンの追加関数
 // inPtr:追加するシーンのポインタ
 void Application::AddScene(std::unique_ptr<Scene> inPtr)
@@ -85,4 +83,3 @@ Size Application::GetWindowSize()
 {
 	return wSize;
 }
-

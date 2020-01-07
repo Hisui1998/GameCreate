@@ -10,9 +10,10 @@ class GameMain :
 private:
 	bool Init()override final;
 	std::unique_ptr<Actor> _player;
+	std::unique_ptr<Actor> _enemy;
 
 	// テスト用
-	std::vector<int> _bgImage;
+	std::vector<std::vector<int>> _bgImage;
 public:
 	GameMain();
 	~GameMain();

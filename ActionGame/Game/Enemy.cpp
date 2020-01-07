@@ -13,7 +13,6 @@ Enemy::Enemy(Vec2 pos, Vec2 size)
 	Init();
 }
 
-
 Enemy::~Enemy()
 {
 }
@@ -33,16 +32,15 @@ bool Enemy::Init(void)
 	return true;
 }
 
-void Enemy::UpDate(char * key)
+void Enemy::UpDate(char* key)
 {
 	(this->*stateTbl[static_cast<int>(state)])();
-	
+
 	//Enemy‚ÌUŒ‚UpDate
 	for (auto atkData : atkList)
 	{
 		atkData->UpDate(key);
 	}
-
 
 	//UŒ‚‚ÌŽ©“®íœˆ—
 	auto itr = atkList.begin();
@@ -61,7 +59,7 @@ void Enemy::UpDate(char * key)
 
 void Enemy::Draw(void)
 {
-	DrawBox(pos.x, pos.y, pos.x + size.x, pos.y + size.y, 0xffff00,true);
+	DrawBox(pos.x, pos.y, pos.x + size.x, pos.y + size.y, 0xffff00, true);
 	for (auto atkData : atkList)
 	{
 		atkData->Draw();
@@ -111,7 +109,7 @@ int Enemy::StateProx(void)
 	if (!isAttack)
 	{
 		isAttack = true;
-		atkList.emplace_back(std::make_shared<Proximity>(pos,size,dir,Vec2(5, 5),4));
+		atkList.emplace_back(std::make_shared<Proximity>(pos, size, dir, Vec2(5, 5), 4));
 	}
 	else
 	{
