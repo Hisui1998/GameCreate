@@ -31,11 +31,11 @@
     <Filter Include="ヘッダー ファイル\Attack">
       <UniqueIdentifier>{8a192964-d656-460a-94cf-e357b3bf1f7f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Singleton">
-      <UniqueIdentifier>{4826efbe-9a6d-4019-9734-2510c0a51f76}</UniqueIdentifier>
+    <Filter Include="ヘッダー ファイル\Manager">
+      <UniqueIdentifier>{6d070795-900b-443c-bd82-aa679b77e5b7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\Singleton">
-      <UniqueIdentifier>{15249215-d73c-4e31-9e83-de9c1740332d}</UniqueIdentifier>
+    <Filter Include="ソース ファイル\Manager">
+      <UniqueIdentifier>{5b6bffda-14f1-4a6f-85ac-fe21dbc363c9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -78,8 +78,11 @@
     <ClCompile Include="Shot.cpp">
       <Filter>ソース ファイル\Attack</Filter>
     </ClCompile>
-    <ClCompile Include="MapMng.cpp">
-      <Filter>ソース ファイル\Singleton</Filter>
+    <ClCompile Include="ResourceMng.cpp">
+      <Filter>ソース ファイル\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="MusicMng.cpp">
+      <Filter>ソース ファイル\Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -122,8 +125,11 @@
     <ClInclude Include="Shot.h">
       <Filter>ヘッダー ファイル\Attack</Filter>
     </ClInclude>
-    <ClInclude Include="MapMng.h">
-      <Filter>ヘッダー ファイル\Singleton</Filter>
+    <ClInclude Include="ResourceMng.h">
+      <Filter>ヘッダー ファイル\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="MusicMng.h">
+      <Filter>ヘッダー ファイル\Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

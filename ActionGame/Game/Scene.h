@@ -4,7 +4,6 @@
 #include <memory>
 #include <map>
 #include <vector>
-#include "MapMng.h"
 
 // シーンの仮想クラス
 class Scene
