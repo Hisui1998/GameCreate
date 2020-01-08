@@ -81,9 +81,6 @@
     <ClCompile Include="ResourceMng.cpp">
       <Filter>ソース ファイル\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="MusicMng.cpp">
-      <Filter>ソース ファイル\Manager</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
