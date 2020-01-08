@@ -34,22 +34,26 @@ private:
 
 	int (Player::* stateTbl[static_cast<int>(ANIM_STATE::MAX)])(void);
 
-	//プレイヤー座標
-	Vec2 pos;	
-	char* _key;
-	//停止フラグ
-	bool idleFlag;
-	//アニメーションカウント
-	int _animCnt;
 	ANIM_STATE _state;
+	Vec2 pos;		//プレイヤー座標
+	Vec2 _accel;		//加速量
+
+	bool _idleFlag;	//停止フラグ
+	bool _isAerial;
+	bool _isJump;
+	int _animCnt;	//アニメーションカウント
+	float _vecx, _vecy;
 
 	//リソース格納用
 	std::vector<int> _images[2];
+	std::vector<int> _image;
 	//コンフィグ
 	std::shared_ptr<Config> _config;
 
 public:
+	//コンストラクタ
 	Player();
+	//デストラクタ
 	~Player();
 
 	//初期化
@@ -58,6 +62,11 @@ public:
 	void UpDate(char* key)override final;
 	//描画用
 	void Draw()override final;
+
+	void OnInit(float& vecx, float& vecy);
+	void PushJump(float& vecx, float& vecy);
+	void OnMove(float vecx, float vecy);
+	void OnAccel(float& vecx, float& vecy);
 
 	Vec2 GetPos() { return pos; };
 	void SetPos(Vec2 inpos) { pos = inpos; };
