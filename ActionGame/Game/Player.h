@@ -36,7 +36,7 @@ private:
 
 	ANIM_STATE _state;
 	Vec2 pos;		//プレイヤー座標
-	Vec2 _accel;		//加速量
+	Vec2 temp, prev;
 
 	bool _idleFlag;	//停止フラグ
 	bool _isAerial;

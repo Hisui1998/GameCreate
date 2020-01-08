@@ -8,8 +8,8 @@ constexpr float speed = 3.0f;
 // _idleFlag í‚é~Ç≥ÇπÇÈÇ©Ç≥ÇπÇ»Ç¢Ç©
 int Player::StateMove(void)
 {
-	//ÉWÉÉÉìÉv
-	if (CheckHitKey(_config->GetKey("Up")))
+	
+	if (CheckHitKey(_config->GetKey("Up")))				//ÉWÉÉÉìÉv
 	{
 		if (!_isJump)
 		{
@@ -19,8 +19,7 @@ int Player::StateMove(void)
 		_isJump = true;
 		
 	}
-
-	if (CheckHitKey(_config->GetKey("Down")))		//ÇµÇ·Ç™Ç›
+	else if (CheckHitKey(_config->GetKey("Down")))		//ÇµÇ·Ç™Ç›
 	{
 		_idleFlag = false;
 	}
@@ -29,26 +28,47 @@ int Player::StateMove(void)
 		_idleFlag = false;
 		pos.x -= speed;
 	}
-	else if (CheckHitKey(_config->GetKey("Right")))	//âEà⁄ìÆ
+	else if (CheckHitKey(_config->GetKey("Right")))		//âEà⁄ìÆ
 	{
 		_idleFlag = false;
 		pos.x += speed;
 	}
 	else
 	{
-		_idleFlag  = true;							//í‚é~èÛë‘Ç÷
+		_idleFlag  = true;								//í‚é~èÛë‘Ç÷
 	}
 
-	if (CheckHitKey(_config->GetKey("Attack")))		//çUåÇ
-	{
+	if (CheckHitKey(_config->GetKey("Attack")))			//çUåÇ
+	{	
 	}
 
 	return 0;
 }
 
+//ÉWÉÉÉìÉvèàóù
 int Player::StateJump(void)
 {
-	//PushJump(_vecx, _vecy);
+	if (_isJump == true)
+	{
+		temp.y = pos.y;
+		pos.y += (pos.y - prev.y) + 1;
+		prev.y = temp.y;
+		if (pos.y >= 450) _isJump = false;
+	}
+	else
+	{
+		_state = ANIM_STATE::MOVE;
+	}
+
+	if (CheckHitKey(_config->GetKey("Up")) && _isJump == false)
+	{
+		_isJump = true;
+		prev.y = pos.y;
+		pos.y = pos.y - 20;
+	}
+	
+
+	
 	return 0;
 }
 
@@ -95,6 +115,11 @@ bool Player::Init()
 	_animCnt = 0;
 
 	pos = { 40, 400 };
+	//posäiî[óp
+	temp = { 0,0 };
+	prev = { 0,0 };
+
+
 	_idleFlag = false;
 	_isJump = false;
 	_isAerial = false;
