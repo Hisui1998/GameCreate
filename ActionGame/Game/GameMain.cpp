@@ -1,7 +1,7 @@
 #include "GameMain.h"
 #include "GameTitle.h"
 #include "Player.h"
-#include "Enemy.h"
+#include "TestEnemy.h"
 #include "ResourceMng.h"
 #include "Application.h"
 
@@ -17,11 +17,11 @@ GameMain::~GameMain()
 
 bool GameMain::Init()
 {
-	_bgImage.emplace_back(IMAGE_ID("../Resource/BackGround/îwåiêØÇÃÇ›.png"));
-	_bgImage.emplace_back(IMAGE_ID("../Resource/BackGround/îwåiéRÇÃÇ›.png"));
-	_bgImage.emplace_back(IMAGE_ID("../Resource/BackGround/îwåiåéÇÃÇ›.png"));
+	//_bgImage.emplace_back(IMAGE_ID("../Resource/BackGround/îwåiêØÇÃÇ›.png"));
+	//_bgImage.emplace_back(IMAGE_ID("../Resource/BackGround/îwåiéRÇÃÇ›.png"));
+	//_bgImage.emplace_back(IMAGE_ID("../Resource/BackGround/îwåiåéÇÃÇ›.png"));
 	_player = std::make_unique<Player>();
-	_enemy = std::make_unique<Enemy>(Vec2(0, 100), Vec2(30, 30));
+	_enemy = std::make_unique<TestEnemy>();
 	return true;
 }
 
