@@ -11,11 +11,11 @@ int TestEnemy::StateIdle(void)
 
 int TestEnemy::StateMove(void)
 {
-	//Vec2 vec;	//エネミーベクトル
-	//vec.x = _player->GetPos().x - pos.x;	//x軸ベクトル
-	//vec.y = _player->GetPos().y - pos.y;	//y軸ベクトル
-	//
-	//pos.x = vec.x * speed;
+	Vec2 vec;	//エネミーベクトル
+	vec.x = _player->GetPos().x - pos.x;	//x軸ベクトル
+	vec.y = _player->GetPos().y - pos.y;	//y軸ベクトル
+	
+	pos.x = vec.x * speed;
 
 	return 0;
 }
@@ -94,6 +94,6 @@ void TestEnemy::Draw()
 }
 
 //当たり判定
-void TestEnemy::CheckHitBox(RECT& rect, Vec2 pos)
+void TestEnemy::CheckHitBox(const RECT& rect, Vec2 pos)
 {
 }
