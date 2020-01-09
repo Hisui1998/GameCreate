@@ -12,14 +12,15 @@
 
 enum class ANIM_STATE
 {
-	MOVE,				//移動
+	IDLE,				//通常
+	MOVE,				//歩き
 	JUMP,				//ジャンプ
+	CROUCH,				//しゃがみ
 	FALL,				//落下
 	SHORT_RANGE_ATK,	//近接攻撃
-	RANGE_ATK,			//遠距離攻撃
+	LONG_RANGE_ATK,			//遠距離攻撃
 	MAX
 };
-
 
 class Player :
 	public Actor
@@ -32,9 +33,12 @@ private:
 	int StateAttack(void);		//近接攻撃
 	int StateShot(void);		//遠距離攻撃
 
+	int KeyUpdate(void);		//キー入力更新
+
 	int (Player::* stateTbl[static_cast<int>(ANIM_STATE::MAX)])(void);
 
 	ANIM_STATE _state;
+	std::vector<int>_animFlame;
 	Vec2 pos;		//プレイヤー座標
 	Vec2 temp, prev;
 
@@ -46,8 +50,7 @@ private:
 	//float speed;
 
 	//リソース格納用
-	std::vector<int> _images[3];
-	std::vector<int> _image;
+	std::vector<int> _images[(int)ANIM_STATE::MAX];
 	//コンフィグ
 	std::shared_ptr<Config> _config;
 

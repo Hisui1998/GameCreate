@@ -8,30 +8,11 @@ constexpr float speed = 3.0f;
 // _idleFlag 停止させるかさせないか
 int Player::StateMove(void)
 {
+	_state = ANIM_STATE::IDLE;
 	_idleFlag = false;
 	_isJump = false;
 
-	if (CheckHitKey(_config->GetKey("Up")))				//ジャンプへ遷移
-	{
-		_state = ANIM_STATE::JUMP;
-	}
-	else if (CheckHitKey(_config->GetKey("Down")))		//しゃがみ
-	{
-	}
-	else if (CheckHitKey(_config->GetKey("Right")))		//右移動
-	{
-		_turnFlag = true;
-		pos.x += speed;
-	}
-	else if (CheckHitKey(_config->GetKey("Left")))		//左移動
-	{
-		 _turnFlag = false;
-		pos.x -= speed;
-	}
-	else
-	{
-		_idleFlag  = true;								//停止状態
-	}
+	KeyUpdate();
 
 	return 0;
 }
@@ -39,6 +20,7 @@ int Player::StateMove(void)
 //ジャンプ処理
 int Player::StateJump(void)
 {
+	KeyUpdate();
 	//ジャンプしているか
 	if (_isJump == true)
 	{
@@ -51,15 +33,7 @@ int Player::StateJump(void)
 			_state = ANIM_STATE::MOVE;
 		}
 	}
-
-	//ジャンプ
-	if (CheckHitKey(_config->GetKey("Up")) && _isJump == false)
-	{
-		_isJump = true;
-		prev.y = pos.y;
-		pos.y = pos.y - 15;
-	}
-
+	
 	return 0;
 }
 
@@ -73,12 +47,60 @@ int Player::StateFall(void)
 //近接攻撃
 int Player::StateAttack(void)
 {
+
+	_state = ANIM_STATE::MOVE;
 	return 0;
 }
 
 //遠距離攻撃
 int Player::StateShot(void)
 {
+	return 0;
+}
+
+int Player::KeyUpdate(void)
+{
+	if (CheckHitKey(_config->GetKey("Right")))		//右移動
+	{
+		if (!_isJump)
+		{
+			_state = ANIM_STATE::MOVE;
+		}
+		_turnFlag = false;
+		pos.x += speed;
+	}
+	if (CheckHitKey(_config->GetKey("Left")))		//左移動
+	{
+		if (!_isJump)
+		{
+			_state = ANIM_STATE::MOVE;
+		}
+		_turnFlag = true;
+		pos.x -= speed;
+	}
+	if (CheckHitKey(_config->GetKey("Up")))			//ジャンプへ遷移
+	{
+		if (!_isJump)
+		{
+			_isJump = true;
+			prev.y = pos.y;
+			pos.y = pos.y - 15;
+		}
+		_state = ANIM_STATE::JUMP;
+	}
+	if (CheckHitKey(_config->GetKey("Down")))		//しゃがみ
+	{
+		if (!_isJump)
+		{
+			_state = ANIM_STATE::CROUCH;
+		}
+	}
+	
+	if (CheckHitKey(_config->GetKey("Attack")))		//攻撃
+	{
+		_state = ANIM_STATE::SHORT_RANGE_ATK;
+		_animCnt = 0;
+	}
 	return 0;
 }
 
@@ -104,15 +126,24 @@ Player::~Player()
 //初期化
 bool Player::Init()
 {
+	_animFlame.resize((int)ANIM_STATE::MAX);
 	//リソース初期化	
-	_images[0] = ResourceMng::Get()->GetID("../Resource/Player/player.png", { 80, 96 }, { 10, 2 });	//通常
-	_images[1] = ResourceMng::Get()->GetID("../Resource/Player/walk.png", { 80, 96 }, { 10, 2 });	//歩き
-	_images[2] = ResourceMng::Get()->GetID("../Resource/Player/jump2.png", { 80, 96 }, { 10, 2 });	//ジャンプ
-	_image = ResourceMng::Get()->GetID("../Resource/Player/squat.png");								//しゃがみ
+	_images[(int)ANIM_STATE::IDLE] = ResourceMng::Get()->GetID("../Resource/Player/player.png", { 80, 96 }, { 10, 2 });	//通常
+	_images[(int)ANIM_STATE::MOVE] = ResourceMng::Get()->GetID("../Resource/Player/walk.png", { 80, 96 }, { 10, 2 });	//歩き
+	_images[(int)ANIM_STATE::JUMP] = ResourceMng::Get()->GetID("../Resource/Player/jump2.png", { 80, 96 }, { 10, 2 });	//ジャンプ
+	_images[(int)ANIM_STATE::CROUCH] = ResourceMng::Get()->GetID("../Resource/Player/squat.png");						//しゃがみ
+	_images[(int)ANIM_STATE::FALL] = _images[(int)ANIM_STATE::JUMP];
+	_images[(int)ANIM_STATE::SHORT_RANGE_ATK] = ResourceMng::Get()->GetID("../Resource/PlayerAttack3/tewi_material18.png", { 120, 96 }, { 6, 2 });
 
+	_animFlame[(int)ANIM_STATE::IDLE] = 12;
+	_animFlame[(int)ANIM_STATE::MOVE] = 10;
+	_animFlame[(int)ANIM_STATE::JUMP] = 13;
+	_animFlame[(int)ANIM_STATE::CROUCH] = 1;
+	_animFlame[(int)ANIM_STATE::FALL] = 3;
+	_animFlame[(int)ANIM_STATE::SHORT_RANGE_ATK] = 10;
 	_animCnt = 0;
 
-	pos = { 40, 400 };
+	pos = { 40, 350};
 	//ジャンプするときのpos格納用
 	temp = { 0,0 };
 	prev = { 0,0 };
@@ -123,11 +154,13 @@ bool Player::Init()
 
 	//関数ポインタ初期化
 	_state = ANIM_STATE::MOVE;
+	stateTbl[static_cast<int>(ANIM_STATE::IDLE)]			= &Player::StateMove;
+	stateTbl[static_cast<int>(ANIM_STATE::CROUCH)]			= &Player::StateMove;
 	stateTbl[static_cast<int>(ANIM_STATE::MOVE)]			= &Player::StateMove;
 	stateTbl[static_cast<int>(ANIM_STATE::JUMP)]			= &Player::StateJump;
 	stateTbl[static_cast<int>(ANIM_STATE::FALL)]			= &Player::StateFall;
 	stateTbl[static_cast<int>(ANIM_STATE::SHORT_RANGE_ATK)] = &Player::StateAttack;
-	stateTbl[static_cast<int>(ANIM_STATE::RANGE_ATK)]		= &Player::StateShot;
+	stateTbl[static_cast<int>(ANIM_STATE::LONG_RANGE_ATK)]	= &Player::StateShot;
 
 	//コンフィグ
 	_config = std::make_shared<Config>();
@@ -144,38 +177,10 @@ void Player::UpDate(char* key)
 //プレイヤー描画
 void Player::Draw()
 {
+	if (_state != ANIM_STATE::FALL)
+	{
+		_animCnt++;
+	}
 	//_images配列の中は（(_animCnt++/フレーム数)%描画したいアニメーション数
-
-	//ジャンプアニメーション
-	if (_isJump)												
-	{
-		DrawRotaGraph(pos.x, pos.y, 1, 0, _images[2][(_animCnt++ / 3) % 13], true, false);
-	}
-
-	//しゃがみ
-	else if (CheckHitKey(_config->GetKey("Down")))					
-	{
-		for (auto& image : _image)
-		{
-			DrawRotaGraph(pos.x, pos.y, 1, 0, image, true, false);
-		}
-	}
-
-	//右向きアニメーション
-	else if (CheckHitKey(_config->GetKey("Right")) && _turnFlag)
-	{
-		DrawRotaGraph(pos.x, pos.y, 1, 0, _images[1][(_animCnt++ / 5) % 10], true, false);		
-	}
-
-	//左向きアニメーション
-	else if (CheckHitKey(_config->GetKey("Left")) && !_turnFlag)
-	{
-		DrawRotaGraph(pos.x, pos.y, 1, 0, _images[1][(_animCnt++ / 5) % 10], true, true);
-	}
-	
-	//停止アニメーション
-	else if (!CheckHitKeyAll() || _idleFlag)
-	{
-		DrawRotaGraph(pos.x, pos.y, 1, 0, _images[0][(_animCnt++ / 5) % 12], true);
-	}
+	DrawRotaGraph(pos.x, pos.y, 1, 0, _images[(int)_state][(_animCnt / 3) % _animFlame[(int)_state]], true, _turnFlag);
 }
