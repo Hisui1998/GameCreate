@@ -38,14 +38,15 @@ private:
 	Vec2 pos;		//プレイヤー座標
 	Vec2 temp, prev;
 
+	bool _turnFlag;
 	bool _idleFlag;	//停止フラグ
-	bool _isAerial;
 	bool _isJump;
 	int _animCnt;	//アニメーションカウント
 	float _vecx, _vecy;
+	//float speed;
 
 	//リソース格納用
-	std::vector<int> _images[2];
+	std::vector<int> _images[3];
 	std::vector<int> _image;
 	//コンフィグ
 	std::shared_ptr<Config> _config;
@@ -62,11 +63,6 @@ public:
 	void UpDate(char* key)override final;
 	//描画用
 	void Draw()override final;
-
-	void OnInit(float& vecx, float& vecy);
-	void PushJump(float& vecx, float& vecy);
-	void OnMove(float vecx, float vecy);
-	void OnAccel(float& vecx, float& vecy);
 
 	Vec2 GetPos() { return pos; };
 	void SetPos(Vec2 inpos) { pos = inpos; };
