@@ -17,9 +17,9 @@ GameMain::~GameMain()
 
 bool GameMain::Init()
 {
-	//_bgImage.emplace_back(IMAGE_ID("../Resource/BackGround/îwåiêØÇÃÇ›.png"));
-	//_bgImage.emplace_back(IMAGE_ID("../Resource/BackGround/îwåiéRÇÃÇ›.png"));
-	//_bgImage.emplace_back(IMAGE_ID("../Resource/BackGround/îwåiåéÇÃÇ›.png"));
+	_bgImage.emplace_back(IMAGE_ID("../Resource/BackGround/îwåiêØÇÃÇ›.png"));
+	_bgImage.emplace_back(IMAGE_ID("../Resource/BackGround/îwåiéRÇÃÇ›.png"));
+	_bgImage.emplace_back(IMAGE_ID("../Resource/BackGround/îwåiåéÇÃÇ›.png"));
 	_player = std::make_unique<Player>();
 	_enemy = std::make_unique<TestEnemy>();
 	return true;
@@ -42,8 +42,15 @@ void GameMain::Draw()
 			DrawExtendGraph(0, 0, 1440, 600, image, true);
 		}
 	}
+	DrawBox(
+		0, Application::Instance()->GetWindowSize().height - 60, 
+		Application::Instance()->GetWindowSize().width, Application::Instance()->GetWindowSize().height,
+		0x73a030,true);
+	DrawBox(
+		0, Application::Instance()->GetWindowSize().height - 50,
+		Application::Instance()->GetWindowSize().width, Application::Instance()->GetWindowSize().height,
+		0x502e30, true);
 	_player->Draw();
 	_enemy->Draw();
 	DrawString(0, 0, "MainScene", 0xffffff);
-	DrawLine(0, Application::Instance()->GetWindowSize().height - 50, Application::Instance()->GetWindowSize().width, Application::Instance()->GetWindowSize().height-50,0xffffff);
 }

@@ -18,7 +18,8 @@ enum class ANIM_STATE
 	CROUCH,				//‚µ‚á‚ª‚Ý
 	FALL,				//—Ž‰º
 	SHORT_RANGE_ATK,	//‹ßÚUŒ‚
-	LONG_RANGE_ATK,			//‰“‹——£UŒ‚
+	LONG_RANGE_ATK,		//‰“‹——£UŒ‚
+	DEATH,				//Ž‰–b
 	MAX
 };
 

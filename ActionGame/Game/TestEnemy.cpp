@@ -11,11 +11,18 @@ int TestEnemy::StateIdle(void)
 
 int TestEnemy::StateMove(void)
 {
-	Vec2 vec;	//エネミーベクトル
-	vec.x = _player->GetPos().x - pos.x;	//x軸ベクトル
-	vec.y = _player->GetPos().y - pos.y;	//y軸ベクトル
+	Vec2 vec;//エネミーベクトル
+	auto v = _player->GetPos();
+
+	vec.x = v.x - pos.x;	//x軸ベクトル
+	vec.y = v.y - pos.y;	//y軸ベクトル
 	
-	pos.x = vec.x * speed;
+	float l = max(sqrt(vec.x*vec.x + vec.y*vec.y),0);
+	vec.x = vec.x / l;
+	vec.y = vec.y / l;
+
+	pos.x += vec.x;
+	pos.y += vec.y;
 
 	return 0;
 }

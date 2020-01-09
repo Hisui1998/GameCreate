@@ -106,10 +106,9 @@ int Player::KeyUpdate(void)
 		}
 		_state = ANIM_STATE::JUMP;
 	}
-	
-	if (CheckHitKey(_config->GetKey("Attack")))		//UŒ‚
+	else if (CheckHitKey(_config->GetKey("Attack")))		//UŒ‚
 	{
-		if (!_attackFlag)
+		if ((!_isJump) && (!_attackFlag))
 		{
 			_attackFlag = true;
 			_animCnt = 0;
