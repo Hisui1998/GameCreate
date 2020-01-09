@@ -20,8 +20,8 @@ bool GameMain::Init()
 	_bgImage.emplace_back(IMAGE_ID("../Resource/BackGround/îwåiêØÇÃÇ›.png"));
 	_bgImage.emplace_back(IMAGE_ID("../Resource/BackGround/îwåiéRÇÃÇ›.png"));
 	_bgImage.emplace_back(IMAGE_ID("../Resource/BackGround/îwåiåéÇÃÇ›.png"));
-	_player = std::make_unique<Player>();
-	_enemy = std::make_unique<TestEnemy>();
+	_player = std::make_shared<Player>();
+	_enemy = std::make_unique<TestEnemy>(_player);
 	return true;
 }
 

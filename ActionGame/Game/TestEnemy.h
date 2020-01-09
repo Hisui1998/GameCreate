@@ -39,10 +39,10 @@ private:
 	std::vector<int> _images[(int)ENEMY_STATE::MAX];
 	std::vector<int> _animFlame;
 
-	std::shared_ptr<Player> _player;
+	std::shared_ptr<Actor> _player;
 
 public:
-	TestEnemy();
+	TestEnemy(std::shared_ptr<Actor> player);
 	~TestEnemy();
 
 	bool Init()override final;

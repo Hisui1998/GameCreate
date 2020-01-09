@@ -12,11 +12,13 @@ struct Vec2 {
 
 class Actor
 {
-
+private:
+	Vec2 pos;
 public:
 	virtual ~Actor() {};
 	virtual bool Init() = 0;
 	virtual void UpDate(char* key) = 0;
 	virtual void Draw() = 0;
+	virtual Vec2 GetPos() { return pos; };
 };
 

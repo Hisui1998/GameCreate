@@ -3,7 +3,6 @@
 #include "Application.h"
 
 constexpr float speed = 3.0f;
-
 int TestEnemy::StateIdle(void)
 {
 	return 0;
@@ -43,8 +42,9 @@ int TestEnemy::StateShot(void)
 }
 
 //コンストラクタ
-TestEnemy::TestEnemy()
+TestEnemy::TestEnemy(std::shared_ptr<Actor> player)
 {
+	_player = player;
 	Init();
 }
 
@@ -82,7 +82,7 @@ bool TestEnemy::Init()
 	stateTbl[static_cast<int>(ENEMY_STATE::LONG_RANGE_ATK)] = &TestEnemy::StateShot;
 
 	//プレイヤー
-	_player = std::make_shared<Player>();
+	//_player = std::make_shared<Player>();
 
 	return false;
 }
