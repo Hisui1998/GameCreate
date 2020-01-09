@@ -42,6 +42,13 @@ private:
 	Vec2 pos;		//プレイヤー座標
 	Vec2 temp, prev;
 
+	RECT _hitBox;// 当たり矩形
+	RECT _attackBox;// 当たり矩形
+
+	int _flame;
+	int _attackCnt;
+
+	bool _attackFlag;
 	bool _turnFlag;
 	bool _idleFlag;	//停止フラグ
 	bool _isJump;

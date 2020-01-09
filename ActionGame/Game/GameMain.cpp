@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "ResourceMng.h"
+#include "Application.h"
 
 GameMain::GameMain()
 {
@@ -44,4 +45,5 @@ void GameMain::Draw()
 	_player->Draw();
 	_enemy->Draw();
 	DrawString(0, 0, "MainScene", 0xffffff);
+	DrawLine(0, Application::Instance()->GetWindowSize().height - 50, Application::Instance()->GetWindowSize().width, Application::Instance()->GetWindowSize().height-50,0xffffff);
 }
